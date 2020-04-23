@@ -79,6 +79,7 @@ app.use(eraseSessionMessage());
 
 app.use("/", require("./routes/index"));
 app.use("/", require("./routes/auth"));
+app.use("/", require("./routes/dashboard_sneaker"));
 
 const listener = app.listen(process.env.PORT, () => {
   console.log(
