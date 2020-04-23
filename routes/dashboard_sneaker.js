@@ -20,5 +20,7 @@ router.get("/products_manage", (req, res, next) => {
     res.render("products_manage");
 });
 
+ 
+
 
 module.exports = router;

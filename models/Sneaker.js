@@ -7,7 +7,7 @@ const newSneaker = new Schema ({
         require: true
     },
     ref: String,
-    sizes: Number,
+    size: Number,
     description: String,
     price: Number,
     category: {
