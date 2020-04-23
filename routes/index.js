@@ -10,7 +10,7 @@ const uploadCloud = require('../config/cloudinary.js');
 
 
 router.get("/", (req, res) => {
-  res.send("foo");
+  res.render("index")
 });
 
 router.get("/sneakers/:cat", (req, res) => {
