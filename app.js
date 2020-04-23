@@ -74,8 +74,11 @@ app.use(checkloginStatus);
 app.use(eraseSessionMessage());
 
 // Getting/Using router(s)
-const basePageRouter = require("./routes/index");
-app.use("/", basePageRouter);
+// const basePageRouter = require("./routes/index");
+// app.use("/", basePageRouter);
+
+app.use("/", require("./routes/index"));
+app.use("/", require("./routes/auth"));
 
 const listener = app.listen(process.env.PORT, () => {
   console.log(
