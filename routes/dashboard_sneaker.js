@@ -13,7 +13,18 @@ router.use((req, res, next) => {
 });
 
 router.get("/products_add", (req, res, next) => {
-    res.render("products_add");
+    Tag.find()
+    .then((dbResult) => {
+        console.log(dbResult)
+        res.render("products_add", {
+            tags: dbResult
+        });
+    })
+
+    .catch((err) => {
+        console.log(err)
+    })
+    
 });
 
 router.post("/products_add", (req, res, next) => {
