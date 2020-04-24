@@ -27,7 +27,10 @@ const newSneaker = new Schema ({
         enum: ['men', 'women', 'kids'],
         required:true
     },
-    id_tags: { type: Schema.Types.Object }
+    id_tags: {
+        type: Schema.Types.ObjectId,
+        ref: "Tag"
+    }
 })
 
 const Sneaker = mongoose.model ('Sneaker', newSneaker);
