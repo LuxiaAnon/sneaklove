@@ -16,7 +16,7 @@ router.get("/products_add", (req, res, next) => {
     res.render("products_add");
 });
 
-router.post("/prodcuts_add", (req, res) => {
+router.post("/products_add", (req, res) => {
     const name = req.body.name;
     const ref = req.body.ref;
     const size = req.body.size;
@@ -24,8 +24,8 @@ router.post("/prodcuts_add", (req, res) => {
     const category = req.body.category;
     const price = req.body.price
     const id_tags = req.body.id_tags;
-
-    Sneaker.find({
+  
+    Sneaker.findOne({
             'ref': ref
         })
         .then((dbResult) => {
@@ -52,6 +52,7 @@ router.post("/prodcuts_add", (req, res) => {
                     id_tags
                 })
                 .then(() => {
+                      console.log("HELLO")
                     res.redirect('products_add', {
                         message: "This shoe is in the DB now"
                     })
