@@ -52,9 +52,8 @@ router.post("/products_add", (req, res) => {
                     id_tags
                 })
                 .then(() => {
-                      console.log("HELLO")
                     res.redirect('products_add', {
-                        message: "This shoe is in the DB now"
+                        msg: "This shoe is in the DB now"
                     })
                 })
                 .catch((err) => {
