@@ -1,12 +1,12 @@
 <div class="big-container product-manage-wrapper flexed-item">
-  
+
   <form action="/products_add" method="post" class="add-product-form">
-  {{#if successMessage}}
-  <p class="msgstatus"> {{successMessage}}</p>
-  {{/if}}
-  {{#if errorMessage}}
-  <p class="msgError">{{errorMessage}}</p>
-  {{/if}}
+    {{#if successMessage}}
+    <p class="msgstatus"> {{successMessage}}</p>
+    {{/if}}
+    {{#if errorMessage}}
+    <p class="msgError">{{errorMessage}}</p>
+    {{/if}}
     <h3 class="form-title">Add Sneackers to the collection</h3>
     <div class="form-item-wrapper flexed-item">
       <label for="name" class="label-name label">Model name</label>
@@ -50,16 +50,21 @@
     <button class="button-primary add-sneacker-btn">Add to collection</button>
   </form>
 
-
-  <div class="add-tag-form">
-    <p id="add-tag-message" class="msg"></p>
-    <h3 class="form-title">Add tags</h3>
-    <div class="form-item-wrapper flexed-item">
-      <label for="label" class="category-name label">Sneaker tag</label>
-      <input id="label" type="text" class="input" placeholder="ex: Gangsta" name="label">
+  <form action="/products_add" method="post" class="add-product-form">
+    <div class="add-tag-form">
+      {{#if successTagMessage}}
+      <p class="msgstatus"> {{successTagMessage}}</p>
+      {{/if}}
+      {{#if errorTagMessage}}
+      <p class="msgError">{{errorTagMessage}}</p>
+      {{/if}}
+      <h3 class="form-title">Add tags</h3>
+      <div class="form-item-wrapper flexed-item">
+        <label for="label" class="category-name label">Sneaker tag</label>
+        <input id="label" type="text" class="input" placeholder="ex: Gangsta" name="label">
+      </div>
+      <button id="btn_new_tag" class="button-primary add-category-btn">Create this category</button>
     </div>
-    <button id="btn_new_tag" class="button-primary add-category-btn">Create this category</button>
-  </div>
- 
-  
+  </form>
+
 </div>

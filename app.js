@@ -21,7 +21,9 @@ app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 app.use(express.static("public"));
 hbs.registerPartials(__dirname + "/views/partials");
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -30,7 +32,9 @@ app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    cookie: { maxAge: 2000000 }, // in millisec
+    cookie: {
+      maxAge: 2000000000
+    }, // in millisec
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
       ttl: 24 * 60 * 60 // 1 day
@@ -49,7 +53,7 @@ app.locals.site_url = process.env.SITE_URL;
 // WARNING: this function must be declared AFTER the session setup
 // WARNING: this function must be declared BEFORE app.use(router(s))
 function checkloginStatus(req, res, next) {
-  res.locals.user = req.session.currentUser ? req.session.currentUser : null; 
+  res.locals.user = req.session.currentUser ? req.session.currentUser : null;
   // access this value @ {{user}} or {{user.prop}} in .hbs
   res.locals.isLoggedIn = Boolean(req.session.currentUser);
   // access this value @ {{isLoggedIn}} in .hbs
@@ -58,7 +62,7 @@ function checkloginStatus(req, res, next) {
 
 function eraseSessionMessage() {
   var count = 0; // initialize counter in parent scope and use it in inner function
-  return function(req, res, next) {
+  return function (req, res, next) {
     if (req.session.msg) { // only increment if session contains msg
       if (count) { // if count greater than 0
         count = 0; // reset counter
