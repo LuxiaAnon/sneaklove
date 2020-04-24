@@ -24,6 +24,7 @@ router.post("/products_add", (req, res) => {
     const category = req.body.category;
     const price = req.body.price
     const id_tags = req.body.id_tags;
+    
   
     Sneaker.findOne({
             'ref': ref
@@ -52,8 +53,8 @@ router.post("/products_add", (req, res) => {
                     id_tags
                 })
                 .then(() => {
-                    res.redirect('products_add', {
-                        msg: "This shoe is in the DB now"
+                    res.render('products_add', {
+                        successMessage: "This shoe is in the DB now"
                     })
                 })
                 .catch((err) => {
@@ -64,6 +65,44 @@ router.post("/products_add", (req, res) => {
             next(err)
         })
 })
+
+
+router.post("/products_add", (req, res,next) => {
+    const label = req.body.label;
+
+ Tag.findOne({
+         'label': label
+     })
+     .then((dbResult) => {
+         if (dbResult !== null) {
+             res.render('products_add', {
+                 errorMessage: "label already exists"
+             });
+             return
+         }
+         if (label === '' ) {
+             res.render('products_add', {
+                 errorMessage: 'Fill the field...'
+             });
+             return
+         }
+
+         Tag.create({
+                label
+             })
+             .then(() => {
+                 res.render('products_add', {
+                     successMessage: "This label is available now"
+                 })
+             })
+             .catch((err) => {
+                 console.log(err)
+             })
+     })
+     .catch((err) => {
+         next(err)
+     })
+ })
 
 
 router.get("/products_manage", (req, res, next) => {
