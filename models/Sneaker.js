@@ -4,15 +4,28 @@ const Schema = mongoose.Schema;
 const newSneaker = new Schema ({
     name: {
         type: String,
-        require: true
+        required: true
     },
-    ref: String,
-    size: Number,
-    description: String,
-    price: Number,
+    ref: {
+        type: String,
+        required: true
+    },
+    size: {
+        type: Number,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
     category: {
         type: String,
         enum: ['men', 'women', 'kids'],
+        required:true
     },
     id_tags: { type: Schema.Types.Object }
 })
